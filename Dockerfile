@@ -1,6 +1,6 @@
 # Dockerfile
 FROM node:18
-#Apps
+#Appsdir
 WORKDIR /app
 
 COPY package*.json ./
