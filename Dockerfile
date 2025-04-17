@@ -1,7 +1,7 @@
 # Use official nginx base image
 FROM nginx:alpine
 
-# Remove default nginx static files
+# Remove default nginx static file
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy build output to nginx's html directory
