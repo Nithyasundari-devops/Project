@@ -1,18 +1,17 @@
-# Dockerfile
-FROM node:18
-#Appsdir
-WORKDIR /app
+# Use official nginx base image
+FROM nginx:alpine
 
-COPY package*.json ./
-RUN npm install
+# Remove default nginx static files
+RUN rm -rf /usr/share/nginx/html/*
 
-COPY . .
+# Copy build output to nginx's html directory
+COPY build/ /usr/share/nginx/html/
 
-RUN npm run build
+# Copy custom nginx config (optional, can skip if not needed)
+# COPY nginx.conf /etc/nginx/nginx.conf
 
-# Use serve for static files
-RUN npm install -g serve
-
+# Expose port 80
 EXPOSE 80
-CMD ["serve", "-s", "build", "-l", "80"]
+
+CMD ["nginx", "-g", "daemon off;"]
 
